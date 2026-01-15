@@ -1,10 +1,15 @@
+resolvers += Resolver.mavenLocal
+resolvers += "Mobile Mind" at "https://raw.githubusercontent.com/mobilemindtech/m2/master"
+
 import sbt.*
 import Keys.*
 import Versions.*
 
-ThisBuild / scalaVersion := "3.7.2"
+ThisBuild / scalaVersion := "3.7.4"
 ThisBuild / name := "toolsjs"
 ThisBuild / organization := "io.tools"
+
+version := "0.0.1"
 
 val toolsjs = (project in file("."))
   .enablePlugins(ScalaJSPlugin)
@@ -12,13 +17,8 @@ val toolsjs = (project in file("."))
     name := "toolsjs",
     libraryDependencies ++= Seq(
       "com.raquo" %%% "laminar" % laminarVersion,
-      ("org.querki" %%% "jquery-facade" % jqueryVersion) cross CrossVersion.for3Use2_13 excludeAll (
-        ExclusionRule(organization = "org.scala-js")
-      ),
-      "org.querki" %%% "bootstrap-datepicker-facade" % jqueryDatepickerVersion cross CrossVersion.for3Use2_13 excludeAll (
-        ExclusionRule(organization = "org.scala-js"),
-        ExclusionRule(organization = "org.querki"),
-      ),
+      "org.querki" %%% "jquery-facade" % jqueryVersion,
+      "org.querki" %%% "bootstrap-datepicker-facade" % jqueryDatepickerVersion,
       "com.lihaoyi" %%% "upickle" % upickleVersion,
       "io.github.cquiroz" %%% "scala-java-time" % javaTimeVersion,
       "io.github.cquiroz" %%% "scala-java-time-tzdb" % javaTimeVersion
